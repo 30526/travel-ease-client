@@ -23,14 +23,14 @@ const LoginPage = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
       <div className=" md:block col-span-4 hidden">{/* <IridBG /> */}</div>
-      <div className=" flex col-span-2 w-full justify-center items-center bg-white">
+      <div className=" flex col-span-2 w-full justify-center items-cente">
         <div className="max-w-md w-full p-8">
           <Link to={"/"}>
             <h2 className="text-3xl cursor-pointer font-bold text-center">
-              Smart <span className="gradient-primary">Deals</span>
+              TravelEase
             </h2>
           </Link>
-          <h1 className="text-xl font-semibold text-gray-800 my-8 text-center">
+          <h1 className="text-xl font-semibold my-8 text-center">
             Login
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -92,7 +92,7 @@ const LoginPage = () => {
             Login with Google
           </button>
 
-          <p className="mt-4 text-gray-600 text-center">
+          <p className="mt-4 text-center">
             Don't have an account?{" "}
             <Link
               to="/register"

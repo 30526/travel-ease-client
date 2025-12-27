@@ -36,14 +36,14 @@ const Register = () => {
             alt=""
           />
         </div>
-        <div className="flex col-span-2 w-full justify-center items-center bg-white">
+        <div className="flex col-span-2 w-full justify-center items-center">
           <div className="max-w-md w-full p-8">
             <Link to={"/"}>
               <h2 className="text-3xl cursor-pointer font-bold text-center">
-                Smart <span className="gradient-primary">Deals</span>
+                TravelEase
               </h2>
             </Link>
-            <h1 className="text-xl font-semibold text-gray-800 my-8 text-center">
+            <h1 className="text-xl font-semibold  my-8 text-center">
               Create Account
             </h1>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,7 +122,7 @@ const Register = () => {
               Login with Google
             </button>
 
-            <p className="mt-4 text-gray-600 text-center">
+            <p className="mt-4 text-center">
               Already have an account?{" "}
               <Link
                 to="/login"
