@@ -6,7 +6,7 @@ import MyLink from "../common/navlink/MyLink";
 import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, signOutUser } = use(AuthContext);
   console.log(user);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -95,52 +95,49 @@ const Navbar = () => {
 
       {/* --- Navbar End: Auth UI --- */}
       <div className="navbar-end gap-2">
-        {/* {!isLoggedIn ? ( */}
-        <div className="flex gap-2">
-          <Theme checked={checked} onThemeBtnClick={onThemeBtnClick}></Theme>
-          <Link to="/login">
-            <button
-              className="btn btn-ghost btn-sm md:btn-md"
-              // onClick={() => setIsLoggedIn(true)}
-            >
-              Login
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="btn btn-primary btn-sm md:btn-md bg-purple-600 border-none text-white hover:bg-purple-700">
-              Register
-            </button>
-          </Link>
-        </div>
-        {/* ) : ( */}
-        <div className="flex items-center gap-4">
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
-              // data-tip={user.displayName}
-            >
-              <div className="w-10 rounded-full border-2 border-purple-500">
-                {/* <img alt="User Avatar" src={user.photoURL} /> */}
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40 font-semibold"
-            >
-              <li>
-                <button
-                  className="text-error"
-                  // onClick={() => setIsLoggedIn(false)}
-                >
-                  LogOut
-                </button>
-              </li>
-            </ul>
+        <Theme checked={checked} onThemeBtnClick={onThemeBtnClick}></Theme>
+        {!user ? (
+          <div className="flex gap-2">
+            <Link to="/login">
+              <button
+                className="btn btn-ghost btn-sm md:btn-md"
+                // onClick={() => setIsLoggedIn(true)}
+              >
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="btn btn-primary btn-sm md:btn-md bg-purple-600 border-none text-white hover:bg-purple-700">
+                Register
+              </button>
+            </Link>
           </div>
-        </div>
-        {/* )} */}
+        ) : (
+          <div className="flex items-center gap-4">
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+                data-tip={user.displayName}
+              >
+                <div className="w-10 rounded-full border-2 border-purple-500">
+                  <img alt="User Avatar" src={user.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40 font-semibold"
+              >
+                <li>
+                  <button className="text-error" onClick={() => signOutUser()}>
+                    LogOut
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

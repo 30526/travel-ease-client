@@ -3,12 +3,12 @@ import { Link } from "react-router";
 import AuthContext from "../../context/AuthContext";
 
 const Register = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser } = use(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    // const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
@@ -19,9 +19,7 @@ const Register = () => {
     // const newUser = { name, email, password };
 
     createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        setUser(user);
+      .then(() => {
         form.reset();
       })
       .catch((error) => {
