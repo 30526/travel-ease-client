@@ -1,13 +1,28 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import AuthContext from "../../context/AuthContext";
 
 const LoginPage = () => {
+  const { signInUser } = use(AuthContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      });
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
-      <div className=" md:block col-span-4 hidden">
-        {/* <IridBG /> */}
-        
-      </div>
+      <div className=" md:block col-span-4 hidden">{/* <IridBG /> */}</div>
       <div className=" flex col-span-2 w-full justify-center items-center bg-white">
         <div className="max-w-md w-full p-8">
           <Link to={"/"}>
@@ -18,7 +33,7 @@ const LoginPage = () => {
           <h1 className="text-xl font-semibold text-gray-800 my-8 text-center">
             Login
           </h1>
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="email"
               name="email"
