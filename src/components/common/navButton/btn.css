@@ -1,0 +1,34 @@
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  /* padding-bottom: 7px; */
+  font-size: 14px;
+  /* padding-right: 15px; */
+}
+
+.hover-underline-animation {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffaa0b;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(2);
+  transform-origin: bottom right;
+}
