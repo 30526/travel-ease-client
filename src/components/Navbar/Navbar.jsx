@@ -7,6 +7,7 @@ import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
   const { user } = use(AuthContext);
+  console.log(user);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {

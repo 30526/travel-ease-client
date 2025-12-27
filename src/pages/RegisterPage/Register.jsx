@@ -1,7 +1,33 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import AuthContext from "../../context/AuthContext";
 
 const Register = () => {
+  const { createUser, setUser } = use(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    if (password !== confirmPassword) {
+      alert("Password did not match");
+      return;
+    }
+    // const newUser = { name, email, password };
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
@@ -22,7 +48,7 @@ const Register = () => {
             <h1 className="text-xl font-semibold text-gray-800 my-8 text-center">
               Create Account
             </h1>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 name="name"
@@ -39,6 +65,7 @@ const Register = () => {
               />
               <input
                 type="password"
+                minLength={6}
                 name="password"
                 placeholder="Password"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -52,12 +79,7 @@ const Register = () => {
                 required
               />
               <div className="flex gap-3">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  // checked={agreed}
-                  // onChange={(e) => setAgreed(e.target.checked)}
-                />
+                <input type="checkbox" className="checkbox" required />
                 <p>Agree to the Terms and Policy</p>
               </div>
               <button
