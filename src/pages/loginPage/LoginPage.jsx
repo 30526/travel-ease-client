@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import AuthContext from "../../context/AuthContext";
 
 const LoginPage = () => {
-  const { signInUser } = use(AuthContext);
+  const { signInUser, signInWithGoogle } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,8 +20,18 @@ const LoginPage = () => {
       });
   };
 
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then(() => {
+        alert("Google sign in successful");
+      })
+      .catch((error) => {
+        console.error("Error during Google sign in:", error);
+      });
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-6 my-20">
       <div className=" md:block col-span-4 hidden">{/* <IridBG /> */}</div>
       <div className=" flex col-span-2 w-full justify-center items-cente">
         <div className="max-w-md w-full p-8">
@@ -30,9 +40,7 @@ const LoginPage = () => {
               TravelEase
             </h2>
           </Link>
-          <h1 className="text-xl font-semibold my-8 text-center">
-            Login
-          </h1>
+          <h1 className="text-xl font-semibold my-8 text-center">Login</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="email"
@@ -58,7 +66,7 @@ const LoginPage = () => {
             </button>
           </form>
           <button
-            // onClick={handleSocialLogin}
+            onClick={handleGoogleLogin}
             className=" hover:border-gray-400 hover:bg-gray-100
            w-full mt-3 btn bg-white text-black border-[#e5e5e5]"
           >

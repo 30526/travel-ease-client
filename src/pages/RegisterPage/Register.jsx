@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import AuthContext from "../../context/AuthContext";
 
 const Register = () => {
-  const { createUser } = use(AuthContext);
+  const { createUser, signInWithGoogle } = use(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +24,16 @@ const Register = () => {
       })
       .catch((error) => {
         console.error(error.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then(() => {
+        alert("Google sign in successful");
+      })
+      .catch((error) => {
+        console.error("Error during Google sign in:", error);
       });
   };
   return (
@@ -88,7 +98,7 @@ const Register = () => {
               </button>
             </form>
             <button
-              // onClick={handleSocialSignIn}
+              onClick={handleGoogleLogin}
               className=" hover:border-gray-400 hover:bg-gray-100
            w-full mt-3 btn bg-white text-black border-[#e5e5e5]"
             >

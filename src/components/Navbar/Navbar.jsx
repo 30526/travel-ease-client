@@ -61,13 +61,14 @@ const Navbar = () => {
   return (
     <div
       className={`
-      navbar sticky top-0 z-50 px-4 md:px-8 transition-all duration-300
-      ${
-        scrolled
-          ? "bg-white/70 backdrop-blur-md shadow-lg border-b border-white/20"
-          : "bg-base-100 shadow-sm"
-      }
-    `}
+    navbar fixed top-0 left-0 right-0 z-50 px-4 md:px-8
+    transition-all duration-300
+    ${
+      scrolled
+        ? "bg-white/70 backdrop-blur-md"
+        : "bg-base-100"
+    }
+  `}
     >
       {/* --- Navbar Start: Mobile Menu + Logo --- */}
       <div className="navbar-start">
