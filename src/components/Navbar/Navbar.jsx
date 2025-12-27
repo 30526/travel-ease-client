@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, ChevronDown } from "lucide-react";
+import Theme from "../common/theme/Theme";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // State to track if the user has scrolled down
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   // Effect to handle scroll event
   useEffect(() => {
@@ -16,9 +18,18 @@ const Navbar = () => {
       }
     };
 
+    // theme
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [theme]);
+
+  const onThemeBtnClick = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const user = {
     displayName: "John Doe",
@@ -85,6 +96,7 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         {!isLoggedIn ? (
           <div className="flex gap-2">
+            <Theme onThemeBtnClick={onThemeBtnClick}></Theme>
             <button
               className="btn btn-ghost btn-sm md:btn-md"
               onClick={() => setIsLoggedIn(true)}
