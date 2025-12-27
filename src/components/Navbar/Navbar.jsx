@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Menu, ChevronDown } from "lucide-react";
 import Theme from "../common/theme/Theme";
+import { Link } from "react-router";
+import MyLink from "../common/navlink/MyLink";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // State to track if the user has scrolled down
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {
@@ -36,28 +36,24 @@ const Navbar = () => {
     setChecked(check);
   };
 
-  const user = {
-    displayName: "John Doe",
-    photoURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
-  };
 
   const navLinks = (
     <>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>All Vehicles</a>
-      </li>
-      <li>
-        <a>Add Vehicle</a>
-      </li>
-      <li>
-        <a>My Vehicles</a>
-      </li>
-      <li>
-        <a>My Bookings</a>
-      </li>
+      <MyLink to="/">
+        <li>Home</li>
+      </MyLink>
+      <MyLink to="/all-vehicles">
+        <li>All Vehicles</li>
+      </MyLink>
+      <MyLink to="/add-vehicle">
+        <li>Add Vehicle</li>
+      </MyLink>
+      <MyLink to="/my-vehicles">
+        <li>My Vehicles</li>
+      </MyLink>
+      <MyLink to="/my-bookings">
+        <li>My Bookings</li>
+      </MyLink>
     </>
   );
 
@@ -92,55 +88,59 @@ const Navbar = () => {
 
       {/* --- Navbar Center: Desktop Links --- */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-semibold gap-2">
+        <ul className="menu menu-horizontal text-md font-semibold gap-6">
           {navLinks}
         </ul>
       </div>
 
       {/* --- Navbar End: Auth UI --- */}
       <div className="navbar-end gap-2">
-        {!isLoggedIn ? (
-          <div className="flex gap-2">
-            <Theme checked={checked} onThemeBtnClick={onThemeBtnClick}></Theme>
+        {/* {!isLoggedIn ? ( */}
+        <div className="flex gap-2">
+          <Theme checked={checked} onThemeBtnClick={onThemeBtnClick}></Theme>
+          <Link to="/login">
             <button
               className="btn btn-ghost btn-sm md:btn-md"
-              onClick={() => setIsLoggedIn(true)}
+              // onClick={() => setIsLoggedIn(true)}
             >
               Login
             </button>
+          </Link>
+          <Link to="/register">
             <button className="btn btn-primary btn-sm md:btn-md bg-purple-600 border-none text-white hover:bg-purple-700">
               Register
             </button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-4">
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
-                data-tip={user.displayName}
-              >
-                <div className="w-10 rounded-full border-2 border-purple-500">
-                  <img alt="User Avatar" src={user.photoURL} />
-                </div>
+          </Link>
+        </div>
+        {/* ) : ( */}
+        <div className="flex items-center gap-4">
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+              // data-tip={user.displayName}
+            >
+              <div className="w-10 rounded-full border-2 border-purple-500">
+                {/* <img alt="User Avatar" src={user.photoURL} /> */}
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40 font-semibold"
-              >
-                <li>
-                  <button
-                    className="text-error"
-                    onClick={() => setIsLoggedIn(false)}
-                  >
-                    LogOut
-                  </button>
-                </li>
-              </ul>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40 font-semibold"
+            >
+              <li>
+                <button
+                  className="text-error"
+                  // onClick={() => setIsLoggedIn(false)}
+                >
+                  LogOut
+                </button>
+              </li>
+            </ul>
           </div>
-        )}
+        </div>
+        {/* )} */}
       </div>
     </div>
   );
