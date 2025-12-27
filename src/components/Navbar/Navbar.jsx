@@ -7,6 +7,9 @@ const Navbar = () => {
   // State to track if the user has scrolled down
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [checked, setChecked] = useState(() => {
+    return localStorage.getItem("checked") === "true";
+  });
 
   // Effect to handle scroll event
   useEffect(() => {
@@ -22,13 +25,15 @@ const Navbar = () => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    localStorage.setItem("checked", checked);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [theme]);
+  }, [theme, checked]);
 
-  const onThemeBtnClick = (checked) => {
-    setTheme(checked ? "dark" : "light");
+  const onThemeBtnClick = (check) => {
+    setTheme(check ? "dark" : "light");
+    setChecked(check);
   };
 
   const user = {
@@ -96,7 +101,7 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         {!isLoggedIn ? (
           <div className="flex gap-2">
-            <Theme onThemeBtnClick={onThemeBtnClick}></Theme>
+            <Theme checked={checked} onThemeBtnClick={onThemeBtnClick}></Theme>
             <button
               className="btn btn-ghost btn-sm md:btn-md"
               onClick={() => setIsLoggedIn(true)}

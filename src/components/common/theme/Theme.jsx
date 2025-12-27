@@ -1,6 +1,6 @@
 import React from "react";
 
-const Theme = ({ onThemeBtnClick }) => {
+const Theme = ({ onThemeBtnClick, checked }) => {
   return (
     <form>
       <label className="swap swap-rotate">
@@ -9,7 +9,9 @@ const Theme = ({ onThemeBtnClick }) => {
           name="theme"
           onClick={(e) => onThemeBtnClick(e.target.checked)}
           type="checkbox"
+          checked={checked}
           className="theme-controller"
+          readOnly
           //   value="synthwave"
         />
 
