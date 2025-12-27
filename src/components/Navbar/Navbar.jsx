@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Menu, ChevronDown } from "lucide-react";
 import Theme from "../common/theme/Theme";
 import { Link } from "react-router";
 import MyLink from "../common/navlink/MyLink";
+import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { user } = use(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {
@@ -35,7 +37,6 @@ const Navbar = () => {
     setTheme(check ? "dark" : "light");
     setChecked(check);
   };
-
 
   const navLinks = (
     <>
@@ -88,9 +89,7 @@ const Navbar = () => {
 
       {/* --- Navbar Center: Desktop Links --- */}
       <div className=" hidden lg:flex items-center navbar-center">
-        <ul className="flex text-md font-semibold gap-6">
-          {navLinks}
-        </ul>
+        <ul className="flex text-md font-semibold gap-6">{navLinks}</ul>
       </div>
 
       {/* --- Navbar End: Auth UI --- */}

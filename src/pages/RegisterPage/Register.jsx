@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router";
 
 const Register = () => {
-    return (
-        <div>
-            register page
-        </div>
-    );
+  return (
+    <></>
+  );
 };
 
 export default Register;
