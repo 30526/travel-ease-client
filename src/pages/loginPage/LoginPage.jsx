@@ -49,18 +49,29 @@ const LoginPage = () => {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              minLength={6}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              required
-            />
+            <label className=" validator">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                minLength={6}
+                className="mb-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                required
+              />
+            </label>
+            <p className="validator-hint hidden">
+              Must be more than 8 characters, including
+              <br />
+              At least one number <br />
+              At least one lowercase letter <br />
+              At least one uppercase letter
+            </p>
 
             <button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300"
+              className="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300"
             >
               Login
             </button>

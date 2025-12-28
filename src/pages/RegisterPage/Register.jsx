@@ -71,14 +71,25 @@ const Register = () => {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               />
-              <input
-                type="password"
-                minLength={6}
-                name="password"
-                placeholder="Password"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
+              <label className="validator">
+                <input
+                  type="password"
+                  minLength={6}
+                  name="password"
+                  placeholder="Password"
+                  className="mb-4 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                  required
+                />
+              </label>
+              <p className="validator-hint hidden">
+                Must be more than 8 characters, including
+                <br />
+                At least one number <br />
+                At least one lowercase letter <br />
+                At least one uppercase letter
+              </p>
               <input
                 type="password"
                 name="confirmPassword"
