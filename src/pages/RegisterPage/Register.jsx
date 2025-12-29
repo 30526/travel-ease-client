@@ -10,8 +10,10 @@ const Register = () => {
     const form = e.target;
     // const name = form.name.value;
     const email = form.email.value;
+    const photoURL = form.PhotoURL.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+
     if (password !== confirmPassword) {
       alert("Password did not match");
       return;
@@ -19,11 +21,14 @@ const Register = () => {
     // const newUser = { name, email, password };
 
     createUser(email, password)
-      .then(() => {
+      .then((result) => {
+        const user = result.user;
+        user.photoURL = photoURL;
         form.reset();
       })
       .catch((error) => {
         console.error(error.message);
+        alert("Error during registration: " + error.message);
       });
   };
 
@@ -70,6 +75,12 @@ const Register = () => {
                 placeholder="Email Address"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
+              />
+              <input
+                type="url"
+                name="PhotoURL"
+                placeholder="Photo URL"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <label className="validator">
                 <input
