@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
-    return (
-        <div className='min-h-screen'>
-            This is Home page
-        </div>
-    );
+  return <div className="min-h-screen">This is Home page</div>;
 };
 
 export default Home;
