@@ -43,16 +43,16 @@ const Navbar = () => {
       <MyLink to="/">
         <li>Home</li>
       </MyLink>
-      <MyLink to="/all-vehicles">
+      <MyLink to="/allVehicles">
         <li>All Vehicles</li>
       </MyLink>
-      <MyLink to="/add-vehicle">
+      <MyLink to="/addVehicles">
         <li>Add Vehicle</li>
       </MyLink>
-      <MyLink to="/my-vehicles">
+      <MyLink to="/myVehicles">
         <li>My Vehicles</li>
       </MyLink>
-      <MyLink to="/my-bookings">
+      <MyLink to="/myBookings">
         <li>My Bookings</li>
       </MyLink>
     </>

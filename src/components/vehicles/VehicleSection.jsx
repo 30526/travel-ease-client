@@ -1,15 +1,15 @@
 import React from "react";
-import ProductCard from "./VehicleCard";
+
 import Skeleton from "../common/skeleton/Skeleton";
+import VehicleCard from "./VehicleCard";
 
 const VehicleSection = ({ loading, vehicles }) => {
-  console.log(loading, vehicles);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto">
       {loading
-        ? vehicles.map((vehicle) => <Skeleton id={vehicle._id}></Skeleton>)
+        ? vehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
         : vehicles.map((vehicle) => (
-            <ProductCard vehicle={vehicle}></ProductCard>
+            <VehicleCard key={vehicle._id} vehicle={vehicle}></VehicleCard>
           ))}
     </div>
   );

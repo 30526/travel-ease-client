@@ -9,3 +9,7 @@ body {
   font-optical-sizing: auto;
   scroll-behavior: smooth;
 }
+
+.isActive {
+  @apply text-blue-600;
+}
