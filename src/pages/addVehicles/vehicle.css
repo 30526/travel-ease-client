@@ -1,0 +1,21 @@
+.uploadIcon {
+  margin-left: 8px;
+  display: none;
+}
+
+button:hover .uploadIcon {
+  display: inline-block;
+  animation: moveRight 1.5s infinite;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
