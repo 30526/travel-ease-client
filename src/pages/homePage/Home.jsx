@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import VehicleSection from "../../components/vehicles/vehicleSection";
 
+
 const Home = () => {
   const axios = useAxios();
   const [loading, setLoading] = useState(true);

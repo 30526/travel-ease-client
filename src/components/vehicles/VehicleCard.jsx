@@ -8,6 +8,7 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import { Link } from "react-router";
 
 const VehicleCard = ({ vehicle }) => {
   // Destructuring the JSON data for easy access
@@ -88,10 +89,12 @@ const VehicleCard = ({ vehicle }) => {
         </div>
 
         {/* --- Action Button --- */}
-        <button className="btn w-full bg-[#f9b233] hover:bg-[#000000] hover:text-white  duration-300 border-none text-[#001d3d] font-extrabold text-lg rounded-xl h-14 group/btn">
-          Details Now
-          <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/btn:translate-x-2" />
-        </button>
+        <Link to={`/carDetails/${vehicle._id}`}>
+          <button className="btn w-full bg-[#f9b233] hover:bg-[#000000] hover:text-white  duration-300 border-none text-[#001d3d] font-extrabold text-lg rounded-xl h-14 group/btn">
+            Details Now
+            <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/btn:translate-x-2" />
+          </button>
+        </Link>
       </div>
     </div>
   );
