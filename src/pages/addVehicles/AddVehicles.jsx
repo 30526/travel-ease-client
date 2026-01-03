@@ -13,9 +13,11 @@ import {
   Trash2,
 } from "lucide-react";
 import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 const AddVehicles = () => {
   const axios = useAxios();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     vehicleName: "",
     brand: "",
@@ -46,6 +48,7 @@ const AddVehicles = () => {
   const vehicleDataWithTime = {
     ...formData,
     createdAt: new Date().toISOString(),
+    userEmail: user?.email || formData.userEmail,
   };
 
   const handleChange = (e) => {
@@ -82,6 +85,7 @@ const AddVehicles = () => {
       .catch((err) => {
         console.error("Error adding vehicle:", err);
       });
+      e.target.reset();
   };
 
   // Reusable Tailwind class for all inputs
@@ -389,6 +393,7 @@ const AddVehicles = () => {
                 <input
                   type="text"
                   name="owner"
+                  value={user?.displayName}
                   className={inputClass}
                   onChange={handleChange}
                 />
@@ -400,6 +405,7 @@ const AddVehicles = () => {
                 <input
                   type="email"
                   name="userEmail"
+                  value={user?.email}
                   className={inputClass}
                   onChange={handleChange}
                 />

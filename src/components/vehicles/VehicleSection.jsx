@@ -1,5 +1,4 @@
 import React from "react";
-
 import Skeleton from "../common/skeleton/Skeleton";
 import VehicleCard from "./VehicleCard";
 

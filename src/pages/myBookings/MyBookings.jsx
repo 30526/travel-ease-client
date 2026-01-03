@@ -1,7 +1,7 @@
 import React from "react";
 
 const MyBookings = () => {
-  return <div>my bookings here</div>;
+  return <div className="min-h-screen">my bookings here</div>;
 };
 
 export default MyBookings;

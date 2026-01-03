@@ -63,11 +63,7 @@ const Navbar = () => {
       className={`
     navbar fixed top-0 left-0 right-0 z-50 px-4 md:px-8
     transition-all duration-300
-    ${
-      scrolled
-        ? "bg-white/70 backdrop-blur-md"
-        : "bg-base-100"
-    }
+    ${scrolled ? "bg-white/70 backdrop-blur-md" : "bg-base-100"}
   `}
     >
       {/* --- Navbar Start: Mobile Menu + Logo --- */}
@@ -83,9 +79,9 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="text-2xl font-extrabold text-purple-700 tracking-tight cursor-pointer">
-          TravelEase
-        </a>
+        <p className="text-2xl font-extrabold text-amber-400 tracking-tight cursor-pointer">
+          Travel<span className="text-black">Ease</span>
+        </p>
       </div>
 
       {/* --- Navbar Center: Desktop Links --- */}
@@ -107,7 +103,7 @@ const Navbar = () => {
               </button>
             </Link>
             <Link to="/register">
-              <button className="btn btn-primary btn-sm md:btn-md bg-purple-600 border-none text-white hover:bg-purple-700">
+              <button className="btn btn-primary btn-sm md:btn-md bg-amber-400 border-none text-white hover:bg-black shadow-none">
                 Register
               </button>
             </Link>
@@ -121,7 +117,7 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
                 data-tip={user.displayName}
               >
-                <div className="w-10 rounded-full border-2 border-purple-500">
+                <div className="w-10 rounded-full border-2 border-amber-500">
                   <img alt="User Avatar" src={user.photoURL} />
                 </div>
               </div>
