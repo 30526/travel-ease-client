@@ -25,6 +25,8 @@ const VehicleCard = ({ vehicle }) => {
     coverImage,
   } = vehicle;
 
+  const age = new Date().getFullYear() - year;
+
   return (
     <div className="card w-full max-w-sm bg-base-100   overflow-hidden border border-gray-100 group transition-all duration-300 ">
       {/* --- Image Section --- */}
@@ -70,13 +72,13 @@ const VehicleCard = ({ vehicle }) => {
           <div className="flex items-center gap-2">
             <User className="w-4 h-4 text-gray-400" />
             <span className="text-sm">
-              Age {new Date().getFullYear() - year + 20}
+              Age {age}
             </span>
             {/* Logic to mimic "Age 25" style from image */}
           </div>
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-gray-400" />
-            <span className="text-sm">{seats} Persons</span>
+            <span className="text-sm">{seats} Seats</span>
           </div>
         </div>
 

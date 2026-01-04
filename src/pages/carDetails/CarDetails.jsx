@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Slider from "../../components/slider/Slider";
 import { useParams } from "react-router";
 import useAxios from "../../hooks/useAxios";
+import PricingCard from "../../components/PricingCard/PricingCard";
+import Skeleton from "../../components/common/skeleton/Skeleton";
 
 const CarDetails = () => {
   const [car, setCar] = useState(null);
+  const [loading, setLoading] = useState(true);
   const axios = useAxios();
   const carId = useParams();
   console.log(car);
@@ -16,6 +19,7 @@ const CarDetails = () => {
       .then((res) => {
         // console.log(res.data);
         setCar(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching car details:", err.message);
@@ -23,9 +27,15 @@ const CarDetails = () => {
   }, [axios, carId.id]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-9 gap-4 container mx-auto my-10">
-      <div className="md:col-span-2 lg:col-span-3"></div>
+      <div className="md:col-span-2 lg:col-span-3 self-start">
+        {loading ? (
+          <Skeleton></Skeleton>
+        ) : (
+          <PricingCard car={car}></PricingCard>
+        )}
+      </div>
       <div className="md:col-span-5 lg:col-span-6">
-        <Slider images={images}></Slider>
+        {loading ? <Skeleton></Skeleton> : <Slider images={images}></Slider>}
       </div>
     </div>
   );
