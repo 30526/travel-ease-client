@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Settings,
   Gauge,
@@ -9,8 +9,10 @@ import {
   ArrowUpRight,
   MessageCircle,
 } from "lucide-react";
+import BookCar from "../Booking/bookCar/BookCar";
 
 const PricingCard = ({ car }) => {
+  const modalRef = useRef(null);
   const {
     pricePerDay,
     transmission,
@@ -21,6 +23,10 @@ const PricingCard = ({ car }) => {
     seats,
   } = car;
   const age = new Date().getFullYear() - year;
+
+  const handleBookNow = () => {
+    modalRef.current.showModal();
+  };
 
   return (
     <div className="h-fit w-full max-w-sm bg-white shadow-[0_10px_40px_-15px_rgba(251,191,36,0.3)] rounded-[2.5rem] p-8 border border-amber-50">
@@ -82,7 +88,10 @@ const PricingCard = ({ car }) => {
 
       {/* Buttons */}
       <div className="flex items-center justify-between gap-4">
-        <button className="btn flex-1 bg-amber-400 hover:bg-amber-500 border-none text-slate-900 rounded-full h-14 font-extrabold text-lg gap-2 focus:outline-none">
+        <button
+          onClick={handleBookNow}
+          className="btn flex-1 bg-amber-400 hover:bg-amber-500 border-none text-slate-900 rounded-full h-14 font-extrabold text-lg gap-2 focus:outline-none"
+        >
           Book Now
           <ArrowUpRight className="w-5 h-5" />
         </button>
@@ -90,6 +99,7 @@ const PricingCard = ({ car }) => {
           <MessageCircle className="w-6 h-6" />
         </button>
       </div>
+      <BookCar car={car} modalRef={modalRef}></BookCar>
     </div>
   );
 };

@@ -10,7 +10,6 @@ const CarDetails = () => {
   const [loading, setLoading] = useState(true);
   const axios = useAxios();
   const carId = useParams();
-  console.log(car);
   const images =
     car?.galleryImages?.length > 1 ? car.galleryImages : [car?.coverImage];
   useEffect(() => {
@@ -27,7 +26,7 @@ const CarDetails = () => {
   }, [axios, carId.id]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-9 gap-4 container mx-auto my-10">
-      <div className="md:col-span-2 lg:col-span-3 self-start">
+      <div className="md:col-span-2 lg:col-span-3 sticky top-18 h-fit self-start">
         {loading ? (
           <Skeleton></Skeleton>
         ) : (
