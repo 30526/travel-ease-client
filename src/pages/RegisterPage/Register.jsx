@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { Link } from "react-router";
 import AuthContext from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = use(AuthContext);
@@ -24,21 +25,23 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         user.photoURL = photoURL;
+        toast.success("Successfully create an account");
         form.reset();
       })
       .catch((error) => {
         console.error(error.message);
-        alert("Error during registration: " + error.message);
+        toast.error("Error during registration: " + error.message);
       });
   };
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then(() => {
-        alert("Google sign in successful");
+        toast.success("Google sign in successful");
       })
       .catch((error) => {
         console.error("Error during Google sign in:", error);
+        toast.error("Unable to logged in");
       });
   };
   return (
@@ -114,7 +117,7 @@ const Register = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300"
+                className="w-full bg-amber-500 hover:bg-black cursor-pointer text-white py-3 rounded-lg font-semibold transition-all duration-300"
               >
                 Register
               </button>
@@ -158,7 +161,7 @@ const Register = () => {
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-purple-600 font-medium hover:underline"
+                className="text-amber-600 font-medium hover:underline"
               >
                 Login
               </Link>

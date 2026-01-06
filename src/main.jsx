@@ -4,11 +4,28 @@ import "./index.css";
 import { RouterProvider } from "react-router";
 import router from "./routes/router";
 import AuthProvider from "./context/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
+    <Toaster
+      toastOptions={{
+        success: {
+          style: {
+            background: "#EB9D02",
+            color: "white",
+          },
+        },
+        error: {
+          style: {
+            background: "red",
+            color: "white",
+          },
+        },
+      }}
+    />
   </StrictMode>
 );

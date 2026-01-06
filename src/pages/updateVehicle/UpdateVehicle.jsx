@@ -90,7 +90,7 @@ const UpdateVehicle = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center py-20 min-h-screen">
         <span className="loading loading-spinner text-amber-500"></span>
       </div>
     );

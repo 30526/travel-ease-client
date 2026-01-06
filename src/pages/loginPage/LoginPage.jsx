@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { Link } from "react-router";
 import AuthContext from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const { signInUser, signInWithGoogle } = use(AuthContext);
@@ -10,23 +11,25 @@ const LoginPage = () => {
     const email = form.email.value;
     const password = form.password.value;
     signInUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
+      .then(() => {
+        toast.success("Login Successfully");
+
         form.reset();
       })
       .catch((error) => {
         console.error("Error during login:", error);
+        toast.error("Check your email and password")
       });
   };
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then(() => {
-        alert("Google sign in successful");
+        toast.success("Google sign in successful");
       })
       .catch((error) => {
         console.error("Error during Google sign in:", error);
+        toast.error("Unable to logged in");
       });
   };
 
@@ -71,7 +74,7 @@ const LoginPage = () => {
 
             <button
               type="submit"
-              className="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300"
+              className="w-full mt-4 bg-amber-500 hover:bg-slate-900 text-white py-3 cursor-pointer rounded-lg font-semibold transition-all duration-300"
             >
               Login
             </button>
@@ -116,7 +119,7 @@ const LoginPage = () => {
             <Link
               to="/register"
               state={location?.state}
-              className="text-purple-600 font-medium hover:underline"
+              className="text-amber-600 font-medium hover:underline"
             >
               Register
             </Link>
