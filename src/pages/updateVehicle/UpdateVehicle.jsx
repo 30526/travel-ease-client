@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import {
   ArrowLeft,
   Save,
@@ -32,6 +32,7 @@ const UpdateVehicle = () => {
     availability: "",
     coverImage: "",
     description: "",
+    galleryImages: [],
   });
 
   const axios = useAxios();
@@ -45,7 +46,7 @@ const UpdateVehicle = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching vehicle:", err);
+        console.error("Error fetching vehicle:", err.message);
         setLoading(false);
       });
   }, [axios, id]);
@@ -57,13 +58,16 @@ const UpdateVehicle = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    try {
-      await axios.put(`/vehicles/${id}`, formData);
-      alert("Vehicle updated successfully!");
-      navigate("/my-vehicles");
-    } catch (err) {
-      console.error("Update failed:", err);
-    }
+
+    axios
+      .patch(`/vehicles/${id}`, formData)
+      .then(() => {
+        alert("Updated Successfully");
+        navigate(-1);
+      })
+      .catch((err) => {
+        alert("Error updating data", err.response);
+      });
   };
 
   const handleGalleryChange = (index, value) => {
