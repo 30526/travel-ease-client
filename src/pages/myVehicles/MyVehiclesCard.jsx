@@ -82,7 +82,7 @@ const MyVehiclesCard = ({ vehicle, handleDelete }) => {
 
           {/* Secondary Management Actions */}
           <button
-            onClick={() => navigate(`/update-vehicle/${_id}`)}
+            onClick={() => navigate(`/updateVehicle/${_id}`)}
             className="btn btn-outline border-slate-200 hover:bg-slate-900 hover:border-slate-900 text-slate-600 hover:text-white font-bold rounded-xl h-12 gap-2 focus:outline-none"
           >
             <Edit3 size={16} /> Update
