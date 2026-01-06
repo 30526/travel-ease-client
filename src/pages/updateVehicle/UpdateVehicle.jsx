@@ -12,6 +12,7 @@ import {
   Plus,
 } from "lucide-react";
 import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
 
 const UpdateVehicle = () => {
   const { id } = useParams();
@@ -62,7 +63,7 @@ const UpdateVehicle = () => {
     axios
       .patch(`/vehicles/${id}`, formData)
       .then(() => {
-        alert("Updated Successfully");
+        toast.success("Updated Vehicle Data Successfully");
         navigate(-1);
       })
       .catch((err) => {
