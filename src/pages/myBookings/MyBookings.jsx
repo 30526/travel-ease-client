@@ -23,7 +23,7 @@ const MyBookings = () => {
   }, [axios, user.email]);
 
   return (
-    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 my-10">
+    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 my-10 min-h-screen">
       {loading
         ? bookings.map((booking) => <Skeleton key={booking._id}></Skeleton>)
         : bookings.map((booking) => (

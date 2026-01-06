@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import { Car, CheckCircle, BookmarkCheck } from "lucide-react";
 import MyVehiclesCard from "./MyVehiclesCard";
+import Skeleton from "../../components/common/skeleton/Skeleton";
 
 const MyVehicles = () => {
   const axios = useAxios();
@@ -15,7 +17,9 @@ const MyVehicles = () => {
       .get(`http://localhost:3000/all-vehicles?email=${user?.email}`)
       .then((res) => {
         setMyVehicles(res.data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error fetching vehicles:", error.message);
@@ -24,21 +28,39 @@ const MyVehicles = () => {
   }, [axios, user]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`/vehicles/${id}`)
-      .then((res) => {
-        console.log(res);
-        const restVehicles = myVehicles.filter((vehicle) => vehicle._id != id);
-        if (res.data.deletedCount) alert("Deleted Successfully");
-        setMyVehicles(restVehicles);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#EB0C0C",
+      cancelButtonColor: "#EB9D02",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`/vehicles/${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your vehicle has been deleted.",
+              icon: "success",
+            });
+            const restVehicles = myVehicles.filter(
+              (vehicle) => vehicle._id != id
+            );
+            if (res.data.deletedCount) alert("Deleted Successfully");
+            setMyVehicles(restVehicles);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+      }
+    });
   };
 
   return (
-    <>
+    <div className="min-h-screen">
       <div
         className="flex flex-col md:flex-row items-center justify-between bg-slate-900 px-6 py-4 rounded-2xl
        text-white shadow-lg border border-slate-800 mb-8 container mx-auto"
@@ -105,7 +127,7 @@ const MyVehicles = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20">
         {loading
           ? myVehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
           : myVehicles.map((vehicle) => (
@@ -116,7 +138,7 @@ const MyVehicles = () => {
               ></MyVehiclesCard>
             ))}
       </div>
-    </>
+    </div>
   );
 };
 
