@@ -9,9 +9,12 @@ import {
 } from "lucide-react";
 import useAuth from "../../../hooks/useAuth";
 import useAxios from "../../../hooks/useAxios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const BookingForm = ({ car, modalRef }) => {
   const axios = useAxios();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { pricePerDay, vehicleName } = car;
   const [formData, setFormData] = useState({
@@ -60,11 +63,12 @@ const BookingForm = ({ car, modalRef }) => {
       .then(() => {
         modalRef.current.close();
         e.target.reset();
-        alert("Booking submitted successfully!");
+        toast.success("Booking submitted successfully!");
+        navigate("/myBookings");
       })
       .catch((err) => {
         console.error("Error submitting booking:", err.message);
-        alert("Failed to submit booking. Please try again.");
+        toast.error("Failed to submit booking. Please try again.");
       });
   };
 
