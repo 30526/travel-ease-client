@@ -32,6 +32,7 @@ const MyVehicles = () => {
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      iconColor: "#EB9D02",
       showCancelButton: true,
       confirmButtonColor: "#EB0C0C",
       cancelButtonColor: "#EB9D02",
@@ -41,15 +42,17 @@ const MyVehicles = () => {
         axios
           .delete(`/vehicles/${id}`)
           .then((res) => {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your vehicle has been deleted.",
-              icon: "success",
-            });
+            if (res.data.deletedCount)
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your vehicle has been deleted.",
+                icon: "success",
+                iconColor: "#EB9D02",
+                confirmButtonColor: "#fbbf24",
+              });
             const restVehicles = myVehicles.filter(
               (vehicle) => vehicle._id != id
             );
-            if (res.data.deletedCount) alert("Deleted Successfully");
             setMyVehicles(restVehicles);
           })
           .catch((err) => {
@@ -59,11 +62,18 @@ const MyVehicles = () => {
     });
   };
 
+  const availableCar = myVehicles.filter(
+    (vehicle) => (vehicle.availability === "Available")
+  );
+  const bookedCar = myVehicles.filter(
+    (vehicle) => (vehicle.availability === "Booked")
+  );
+
   return (
     <div className="min-h-screen">
       <div
         className="flex flex-col md:flex-row items-center justify-between bg-slate-900 px-6 py-4 rounded-2xl
-       text-white shadow-lg border border-slate-800 mb-8 container mx-auto"
+       text-white shadow-lg border border-slate-800 container mx-auto"
       >
         {/* Title Section - Now more compact */}
         <div className="flex items-center gap-3 mb-4 md:mb-0">
@@ -72,7 +82,7 @@ const MyVehicles = () => {
           <div>
             <h1 className="text-xl font-bold tracking-tight">My Fleet</h1>
             <p className="text-slate-400 text-xs font-medium">
-              Inventory Overview
+              Vehicles added by me
             </p>
           </div>
         </div>
@@ -106,7 +116,9 @@ const MyVehicles = () => {
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">
                 Available
               </p>
-              <p className="text-lg font-black leading-none">{"available"}</p>
+              <p className="text-lg font-black leading-none">
+                {availableCar.length}
+              </p>
             </div>
           </div>
 
@@ -122,12 +134,14 @@ const MyVehicles = () => {
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">
                 Booked
               </p>
-              <p className="text-lg font-black leading-none">{"booked"}</p>
+              <p className="text-lg font-black leading-none">
+                {bookedCar.length}
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto my-10">
         {loading
           ? myVehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
           : myVehicles.map((vehicle) => (

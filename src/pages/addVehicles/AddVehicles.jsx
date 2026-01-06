@@ -14,9 +14,12 @@ import {
 } from "lucide-react";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddVehicles = () => {
   const axios = useAxios();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [formData, setFormData] = useState({
     vehicleName: "",
@@ -80,7 +83,26 @@ const AddVehicles = () => {
     axios
       .post("/vehicles", vehicleDataWithTime)
       .then(() => {
-        alert("Vehicle added successfully!");
+        Swal.fire({
+          title: "Added Vehicle Successfully",
+          icon: "success",
+          iconColor: "#fbbf24",
+          timer: 2000,
+          showConfirmButton: false,
+          position: "middle",
+          // toast: true,
+          timerProgressBar: true,
+          progressBarColor: "#fbbf24",
+          didOpen: (toast) => {
+            const progressBar = toast.querySelector(
+              ".swal2-timer-progress-bar"
+            );
+            if (progressBar) {
+              progressBar.style.backgroundColor = "#fbbf24";
+            }
+          },
+        });
+        navigate("/myVehicles");
       })
       .catch((err) => {
         console.error("Error adding vehicle:", err);
@@ -308,7 +330,7 @@ const AddVehicles = () => {
                     Location
                   </label>
                   <div className="relative">
-                    <MapPin className="absolute left-3 top-3.5 text-slate-400 w-5 h-5" />
+                    <MapPin className="absolute left-3 top-2.5 z-10 text-slate-400 w-5 h-5" />
                     <input
                       type="text"
                       name="location"
