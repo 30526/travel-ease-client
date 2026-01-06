@@ -85,7 +85,7 @@ const AddVehicles = () => {
       .catch((err) => {
         console.error("Error adding vehicle:", err);
       });
-      e.target.reset();
+    e.target.reset();
   };
 
   // Reusable Tailwind class for all inputs
@@ -337,6 +337,7 @@ const AddVehicles = () => {
                   name="coverImage"
                   placeholder="https://..."
                   className={inputClass}
+                  required
                   onChange={handleChange}
                 />
               </div>

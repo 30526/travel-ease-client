@@ -15,7 +15,7 @@ const AllVehicles = () => {
         setVehicles(res.data);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 3000);
       })
       .catch((err) => {
         console.error("Error fetching all vehicles:", err);
