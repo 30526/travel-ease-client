@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import useAxios from "../../hooks/useAxios";
 import Skeleton from "../../components/common/skeleton/Skeleton";
 import VehicleCard from "../../components/vehicles/VehicleCard";
@@ -24,14 +25,51 @@ const AllVehicles = () => {
       });
   }, [axios]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1, // This creates the "ripple" effect
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto min-h-screen">
+    <motion.div
+      key={loading ? "loading" : "loaded"}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto min-h-screen"
+    >
       {loading
-        ? vehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
+        ? Array.from({ length: 8 }).map((_, i) => (
+            <motion.div variants={cardVariants} key={`skeleton-${i}`}>
+              <Skeleton />
+            </motion.div>
+          ))
         : vehicles.map((vehicle) => (
-            <VehicleCard key={vehicle._id} vehicle={vehicle}></VehicleCard>
+            <motion.div variants={cardVariants} key={vehicle._id}>
+              <VehicleCard vehicle={vehicle} />
+            </motion.div>
           ))}
-    </div>
+    </motion.div>
   );
 };
 
