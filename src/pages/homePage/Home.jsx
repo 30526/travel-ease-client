@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import VehicleSection from "../../components/vehicles/vehicleSection";
-
+import HeroBanner from "../../components/heroBanner/HeroBanner";
 
 const Home = () => {
   const axios = useAxios();
@@ -25,9 +25,14 @@ const Home = () => {
   }, [axios]);
 
   return (
-    <div className="min-h-screen">
-      <VehicleSection loading={loading} vehicles={vehicles}></VehicleSection>
-    </div>
+    <>
+      <section className="min-h-screen">
+        <HeroBanner></HeroBanner>
+      </section>
+      <section className="relative">
+        <VehicleSection loading={loading} vehicles={vehicles}></VehicleSection>
+      </section>
+    </>
   );
 };
 

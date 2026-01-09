@@ -4,6 +4,12 @@
   themes: light --default, dark --prefersdark;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
