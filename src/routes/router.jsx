@@ -10,6 +10,7 @@ import CarDetails from "../pages/carDetails/CarDetails";
 import UpdateVehicle from "../pages/updateVehicle/UpdateVehicle";
 import AddVehicles from "../pages/addVehicles/AddVehicles";
 import PrivateRoute from "../private/PrivateRoute";
+import Error from "../pages/error/Error";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "updateVehicle/:id",
         Component: UpdateVehicle,
+      },
+      {
+        path: "*",
+        Component: Error,
       },
     ],
   },
