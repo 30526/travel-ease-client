@@ -1,11 +1,12 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = use(AuthContext);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,6 +27,7 @@ const Register = () => {
         const user = result.user;
         user.photoURL = photoURL;
         toast.success("Successfully create an account");
+        navigate("/");
         form.reset();
       })
       .catch((error) => {
@@ -38,6 +40,7 @@ const Register = () => {
     signInWithGoogle()
       .then(() => {
         toast.success("Google sign in successful");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.error("Error during Google sign in:", error);

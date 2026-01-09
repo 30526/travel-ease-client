@@ -6,9 +6,10 @@ import Register from "../pages/RegisterPage/Register";
 import AllVehicles from "../pages/allVehicles/AllVehicles";
 import MyVehicles from "../pages/myVehicles/MyVehicles";
 import MyBookings from "../pages/myBookings/MyBookings";
-import AddVehicles from "../pages/addVehicles/AddVehicles";
 import CarDetails from "../pages/carDetails/CarDetails";
 import UpdateVehicle from "../pages/updateVehicle/UpdateVehicle";
+import AddVehicles from "../pages/addVehicles/AddVehicles";
+import PrivateRoute from "../private/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,19 +34,35 @@ const router = createBrowserRouter([
       },
       {
         path: "addVehicles",
-        Component: AddVehicles,
+        element: (
+          <PrivateRoute>
+            <AddVehicles></AddVehicles>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myVehicles",
-        Component: MyVehicles,
+        element: (
+          <PrivateRoute>
+            <MyVehicles></MyVehicles>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myBookings",
-        Component: MyBookings,
+        element: (
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
       },
       {
         path: "carDetails/:id",
-        Component: CarDetails,
+        element: (
+          <PrivateRoute>
+            <CarDetails></CarDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "updateVehicle/:id",
