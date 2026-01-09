@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Settings,
   Gauge,
@@ -71,9 +72,7 @@ const VehicleCard = ({ vehicle }) => {
           </div>
           <div className="flex items-center gap-2">
             <User className="w-4 h-4 text-gray-400" />
-            <span className="text-sm">
-              Age {age}
-            </span>
+            <span className="text-sm">Age {age}</span>
             {/* Logic to mimic "Age 25" style from image */}
           </div>
           <div className="flex items-center gap-2">
@@ -92,10 +91,14 @@ const VehicleCard = ({ vehicle }) => {
 
         {/* --- Action Button --- */}
         <Link to={`/carDetails/${vehicle._id}`}>
-          <button className="btn w-full bg-[#f9b233] hover:bg-[#000000] hover:text-white  duration-300 border-none text-[#001d3d] font-extrabold text-lg rounded-xl h-14 group/btn">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="btn w-full bg-[#f9b233] hover:bg-[#000000] hover:text-white  duration-300 border-none text-[#001d3d] font-extrabold text-lg rounded-xl h-14 group/btn"
+          >
             Details Now
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/btn:translate-x-2" />
-          </button>
+          </motion.button>
         </Link>
       </div>
     </div>

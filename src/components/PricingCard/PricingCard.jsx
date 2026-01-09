@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { motion } from "framer-motion";
 import {
   Settings,
   Gauge,
@@ -88,13 +89,14 @@ const PricingCard = ({ car }) => {
 
       {/* Buttons */}
       <div className="flex items-center justify-between gap-4">
-        <button
+        <motion.button
+        whileTap={{scale:0.9}}
           onClick={handleBookNow}
           className="btn flex-1 bg-amber-400 hover:bg-amber-500 border-none text-slate-900 rounded-full h-14 font-extrabold text-lg gap-2 focus:outline-none"
         >
           Book Now
           <ArrowUpRight className="w-5 h-5" />
-        </button>
+        </motion.button>
         <button className="btn btn-circle bg-amber-400 hover:bg-amber-500 border-none text-slate-900 h-14 w-14 focus:outline-none">
           <MessageCircle className="w-6 h-6" />
         </button>
