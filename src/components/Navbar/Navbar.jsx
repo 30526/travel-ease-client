@@ -6,7 +6,7 @@ import MyLink from "../common/navlink/MyLink";
 import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, loading } = use(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {
@@ -95,19 +95,13 @@ const Navbar = () => {
         {!user ? (
           <div className="flex gap-2">
             <Link to="/login">
-              <button
-                className="btn btn-ghost btn-sm md:btn-md"
-                // onClick={() => setIsLoggedIn(true)}
-              >
+              <button className="btn btn-primary btn-sm md:btn-md bg-amber-400 border-none text-white hover:bg-black shadow-none">
                 Login
               </button>
             </Link>
-            <Link to="/register">
-              <button className="btn btn-primary btn-sm md:btn-md bg-amber-400 border-none text-white hover:bg-black shadow-none">
-                Register
-              </button>
-            </Link>
           </div>
+        ) : loading ? (
+          <span className="loading loading-spinner text-warning"></span>
         ) : (
           <div className="flex items-center gap-4">
             <div className="dropdown dropdown-end">
