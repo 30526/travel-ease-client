@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import VehicleSection from "../../components/vehicles/vehicleSection";
 import HeroBanner from "../../components/heroBanner/HeroBanner";
 import LogoMarque from "../../components/marquee/LogoMarque";
+import HowItWorks from "../../components/howItWorks/HowItWorks";
 
 const Home = () => {
   const axios = useAxios();
@@ -33,6 +34,9 @@ const Home = () => {
       <section>
         <LogoMarque></LogoMarque>
         <img src="https://ibb.co.com/nqzx0LYb" alt="" />
+      </section>
+      <section>
+        <HowItWorks></HowItWorks>
       </section>
       <section className="relative">
         <VehicleSection loading={loading} vehicles={vehicles}></VehicleSection>

@@ -14,7 +14,7 @@ const LogoMarquee = () => {
       <Marquee
         speed={40}
         gradient={true}
-        gradientColor="#f8fafc" // Matches slate-50 background
+        gradientColor="#f8fafc" 
         gradientWidth={100}
         pauseOnHover={true}
       >
