@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import VehicleSection from "../../components/vehicles/vehicleSection";
 import HeroBanner from "../../components/heroBanner/HeroBanner";
+import LogoMarque from "../../components/marquee/LogoMarque";
 
 const Home = () => {
   const axios = useAxios();
@@ -26,8 +27,12 @@ const Home = () => {
 
   return (
     <>
-      <section className="min-h-screen">
+      <section>
         <HeroBanner></HeroBanner>
+      </section>
+      <section>
+        <LogoMarque></LogoMarque>
+        <img src="https://ibb.co.com/nqzx0LYb" alt="" />
       </section>
       <section className="relative">
         <VehicleSection loading={loading} vehicles={vehicles}></VehicleSection>
