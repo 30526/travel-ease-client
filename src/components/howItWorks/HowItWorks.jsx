@@ -35,7 +35,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="p-20 bg-amber-50 rounded-4xl w-11/12 mx-auto my-20">
+    <section className="md:p-20 py-20 bg-amber-50 mb-20">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -70,8 +70,8 @@ const HowItWorks = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               {/* Step Number Badge */}
-              <div className="absolute top-0 right-0 bg-white w-16 h-12 rounded-bl-3xl flex items-center justify-center">
-                <span className="text-slate-900 font-black text-xl ">
+              <div className="absolute top-0 right-0 bg-white w-16 h-12 rounded-bl-3xl flex items-center justify-center group-hover:bg-amber-400 transition-all duration-300">
+                <span className="text-slate-900 font-black text-x">
                   {step.id}
                 </span>
               </div>
