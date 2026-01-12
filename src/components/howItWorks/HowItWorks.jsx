@@ -39,19 +39,39 @@ const HowItWorks = () => {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-2">
+          <motion.div
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center gap-2 mb-2"
+          >
             <div className="w-8 h-[2px] bg-amber-400"></div>
             <span className="text-amber-500 font-bold uppercase tracking-widest text-sm">
               Process
             </span>
             <div className="w-8 h-[2px] bg-amber-400"></div>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter">
+          </motion.div>
+
+          <motion.h2
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter"
+          >
             How It <span className="text-amber-500">Works</span>
-          </h2>
-          <p className="text-slate-500 font-medium">
+          </motion.h2>
+
+          <motion.p
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "circOut" }}
+            className="text-slate-500 font-medium"
+          >
             EASY STEPS TO YOUR RENTAL
-          </p>
+          </motion.p>
         </div>
 
         {/* Steps Grid */}

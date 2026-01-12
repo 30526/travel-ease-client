@@ -9,12 +9,23 @@ const VehicleSection = ({ loading, vehicles }) => {
   return (
     <div className="container mx-auto my-20">
       <div className="justify-items-center my-20">
-        <p className="font-black text-sm text-amber-500 uppercase tracking-[0.3em]">
+        <motion.p
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-black text-sm text-amber-500 uppercase tracking-[0.3em]"
+        >
           Our Fleets
-        </p>
-        <h2 className="text-3xl lg:text-5xl md:text-4xl  text-center text-slate-900 font-semibold">
+        </motion.p>
+        <motion.h2
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "circOut" }}
+          className="text-3xl lg:text-5xl md:text-4xl  text-center text-slate-900 font-semibold"
+        >
           Explore our perfect and <br /> extensive fleet
-        </h2>
+        </motion.h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
         {loading
@@ -23,12 +34,10 @@ const VehicleSection = ({ loading, vehicles }) => {
               <VehicleCard key={vehicle._id} vehicle={vehicle}></VehicleCard>
             ))}
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full">
-         
           <motion.div
             whileHover={{ y: -5 }}
             className="relative overflow-hidden bg-white border border-slate-100 rounded-[2.5rem] p-8 group cursor-pointer transition-all duration-300 flex flex-col"
           >
-           
             <div className="flex justify-between items-start mb-6">
               <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
                 <Car
@@ -42,7 +51,6 @@ const VehicleSection = ({ loading, vehicles }) => {
               </span>
             </div>
 
-            
             <h3 className="text-slate-900 text-2xl font-black leading-tight italic uppercase tracking-tighter">
               Ready to <span className="text-amber-500">Drive?</span>
             </h3>
@@ -50,7 +58,7 @@ const VehicleSection = ({ loading, vehicles }) => {
               Explore our 500+ premium vehicles and book your dream car in
               minutes.
             </p>
-            
+
             <div className="flex-grow flex items-center justify-center py-6">
               <Search
                 size={80}
@@ -58,7 +66,6 @@ const VehicleSection = ({ loading, vehicles }) => {
               />
             </div>
 
-            
             <div className="mt-auto">
               <ul className="mb-6 space-y-2">
                 {[
@@ -88,12 +95,10 @@ const VehicleSection = ({ loading, vehicles }) => {
             </div>
           </motion.div>
 
-         
           <motion.div
             whileHover={{ y: -5 }}
             className="relative overflow-hidden bg-slate-900 rounded-[2.5rem] p-8 group cursor-pointer flex flex-col"
           >
-           
             <div className="flex justify-between items-start mb-6">
               <div className="w-12 h-12 bg-slate-800 rounded-2xl flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
                 <PlusCircle
@@ -106,7 +111,6 @@ const VehicleSection = ({ loading, vehicles }) => {
               </span>
             </div>
 
-           
             <h3 className="text-white text-2xl font-black leading-tight italic uppercase tracking-tighter">
               Start <span className="text-amber-400">Earning?</span>
             </h3>
@@ -114,7 +118,7 @@ const VehicleSection = ({ loading, vehicles }) => {
               Turn your spare car into a revenue stream. List today and earn up
               to $1.5k/month.
             </p>
-            
+
             <div className="flex-grow flex items-center justify-center py-6">
               <DollarSign
                 size={100}
@@ -122,7 +126,6 @@ const VehicleSection = ({ loading, vehicles }) => {
               />
             </div>
 
-            
             <div className="mt-auto">
               <div className="flex flex-wrap gap-2 mb-6">
                 {["Verified Owners", "Safe Payouts"].map((tag, i) => (
