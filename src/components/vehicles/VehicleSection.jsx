@@ -22,9 +22,10 @@ const VehicleSection = ({ loading, vehicles }) => {
           whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: "circOut" }}
-          className="text-3xl lg:text-5xl md:text-4xl  text-center text-slate-900 font-semibold"
+          className="text-3xl md:text-5xl font-black text-slate-900 leading-tight uppercase italic tracking-tighter text-center"
         >
-          Explore our perfect and <br /> extensive fleet
+          Explore our perfect and <br />{" "}
+          <span className="text-amber-500">extensive fleet</span>
         </motion.h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
@@ -36,7 +37,7 @@ const VehicleSection = ({ loading, vehicles }) => {
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full">
           <motion.div
             whileHover={{ y: -5 }}
-            className="relative overflow-hidden bg-white border border-slate-100 rounded-[2.5rem] p-8 group cursor-pointer transition-all duration-300 flex flex-col"
+            className="relative overflow-hidden bg-amber-50 border border-slate-100 rounded-[2.5rem] p-8 group cursor-pointer transition-all duration-300 flex flex-col"
           >
             <div className="flex justify-between items-start mb-6">
               <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">

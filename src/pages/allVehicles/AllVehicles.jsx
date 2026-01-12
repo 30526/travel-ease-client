@@ -147,7 +147,7 @@ const AllVehicles = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20 justify-items-center"
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20 "
       >
         {loading
           ? Array.from({ length: 8 }).map((_, i) => (

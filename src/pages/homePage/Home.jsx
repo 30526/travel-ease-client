@@ -4,6 +4,7 @@ import VehicleSection from "../../components/vehicles/vehicleSection";
 import HeroBanner from "../../components/heroBanner/HeroBanner";
 import LogoMarque from "../../components/marquee/LogoMarque";
 import HowItWorks from "../../components/howItWorks/HowItWorks";
+import WhyChooseUs from "../../components/whyChooseUs/WhyChooseUs";
 
 const Home = () => {
   const axios = useAxios();
@@ -40,6 +41,9 @@ const Home = () => {
       </section>
       <section className="relative">
         <VehicleSection loading={loading} vehicles={vehicles}></VehicleSection>
+      </section>
+      <section>
+        <WhyChooseUs></WhyChooseUs>
       </section>
     </>
   );
