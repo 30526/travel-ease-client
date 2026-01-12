@@ -44,7 +44,7 @@ const HowItWorks = () => {
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-2 mb-2"
+            className="flex items-center justify-center gap-2 mb-4"
           >
             <div className="w-8 h-[2px] bg-amber-400"></div>
             <span className="text-amber-500 font-bold uppercase tracking-widest text-sm">

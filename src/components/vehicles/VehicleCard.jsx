@@ -29,7 +29,7 @@ const VehicleCard = ({ vehicle }) => {
   const age = new Date().getFullYear() - year;
 
   return (
-    <div className="card w-full max-w-sm bg-base-100   overflow-hidden border border-gray-100 group transition-all duration-300 ">
+    <div className="card w-full max-w-sm bg-base-100   overflow-hidden border border-gray-100 group transition-all duration-300">
       {/* --- Image Section --- */}
       <figure className="relative h-64 overflow-hidden bg-black">
         <img

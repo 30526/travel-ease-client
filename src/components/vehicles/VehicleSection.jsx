@@ -13,7 +13,7 @@ const VehicleSection = ({ loading, vehicles }) => {
           initial={{ y: "100%" }}
           whileInView={{ y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-black text-sm text-amber-500 uppercase tracking-[0.3em]"
+          className="font-black text-sm text-amber-500 uppercase tracking-[0.3em] mb-4"
         >
           Our Fleets
         </motion.p>
@@ -28,7 +28,7 @@ const VehicleSection = ({ loading, vehicles }) => {
           <span className="text-amber-500">extensive fleet</span>
         </motion.h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
         {loading
           ? vehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
           : vehicles.map((vehicle) => (

@@ -1,9 +1,18 @@
 import React, { useState, useEffect, use } from "react";
-import { Menu, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  ChevronDown,
+  LogOut,
+  CalendarCheck,
+  Award,
+  Clock,
+} from "lucide-react";
+import { format, formatDate } from "date-fns";
 import Theme from "../common/theme/Theme";
 import { Link } from "react-router";
 import MyLink from "../common/navlink/MyLink";
 import AuthContext from "../../context/AuthContext";
+import MenuBar from "../MenuBar/MenuBar";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = use(AuthContext);
@@ -38,25 +47,31 @@ const Navbar = () => {
     setChecked(check);
   };
 
+  const navUlClass = "leading-tight uppercase italic tracking-tighter";
+
   const navLinks = (
     <>
       <MyLink to="/">
-        <li>Home</li>
+        <li className={navUlClass}>Home</li>
       </MyLink>
       <MyLink to="/allVehicles">
-        <li>All Vehicles</li>
+        <li className={navUlClass}>All Vehicles</li>
       </MyLink>
       <MyLink to="/addVehicles">
-        <li>Add Vehicle</li>
+        <li className={navUlClass}>Add Vehicle</li>
       </MyLink>
       <MyLink to="/myVehicles">
-        <li>My Vehicles</li>
+        <li className={navUlClass}>My Vehicles</li>
       </MyLink>
       <MyLink to="/myBookings">
-        <li>My Bookings</li>
+        <li className={navUlClass}>My Bookings</li>
       </MyLink>
     </>
   );
+
+  const today = new Date();
+  const formateDate = format(today, "dd MMM yyy");
+  const formatTime = format(today, "hh : mm a");
 
   return (
     <div
@@ -68,7 +83,7 @@ const Navbar = () => {
     >
       {/* --- Navbar Start: Mobile Menu + Logo --- */}
       <div className="navbar-start">
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <Menu className="h-6 w-6" />
           </label>
@@ -78,8 +93,9 @@ const Navbar = () => {
           >
             {navLinks}
           </ul>
-        </div>
-        <p className="text-2xl font-extrabold text-amber-400 tracking-tight cursor-pointer">
+        </div> */}
+        <MenuBar navLinks={navLinks}></MenuBar>
+        <p className="text-2xl font-extrabold text-amber-400 tracking-tight cursor-pointer leading-tight uppercase italic">
           Travel<span className="text-black">Ease</span>
         </p>
       </div>
@@ -108,23 +124,118 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
-                data-tip={user.displayName}
+                className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full border-2 border-amber-500">
-                  <img alt="User Avatar" src={user.photoURL} />
+                <div className="w-10 rounded-full border-2 border-amber-500 hover:border-amber-400 transition-colors">
+                  <img
+                    alt="User Avatar"
+                    src={user?.photoURL || "https://via.placeholder.com/150"}
+                  />
                 </div>
               </div>
-              <ul
+
+              <div
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40 font-semibold"
+                className="dropdown-content mt-3 z-[10] shadow-2xl bg-white border border-slate-100 rounded-[2rem] w-72 overflow-hidden"
               >
-                <li>
-                  <button className="text-error" onClick={() => signOutUser()}>
-                    LogOut
+                {/* 1. Identity Header */}
+                <div className="bg-slate-900 p-6 text-center relative">
+                  <div className="absolute top-2 right-2 flex items-center gap-1 bg-green-500/20 px-2 py-0.5 rounded-full border border-green-500/30">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-[9px] text-green-400 font-black uppercase tracking-tighter">
+                      Verified
+                    </span>
+                  </div>
+
+                  <div className="w-16 h-16 rounded-2xl border-2 border-amber-400 mx-auto mb-3 overflow-hidden shadow-lg shadow-amber-400/20">
+                    <img
+                      src={user?.photoURL}
+                      alt="User profile"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-white font-black italic uppercase tracking-tighter text-lg">
+                    {user?.displayName}
+                  </h3>
+                  <p className="text-slate-400 text-xs font-medium lowercase truncate">
+                    {user?.email}
+                  </p>
+                </div>
+                <div className="px-4 py-2.5 bg-amber-50/50 border-b border-slate-100 flex justify-between items-center">
+                  <div className="flex items-center gap-1.5 text-slate-400">
+                    <Clock size={12} className="text-amber-500" />
+                    <span className="text-[10px] font-black uppercase tracking-widest">
+                      Live Session
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] font-black text-amber-600 italic leading-none">
+                      {formatTime}
+                    </p>
+                    <p className="text-[8px] font-bold text-slate-400 uppercase tracking-tighter">
+                      {formateDate}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2. Professional Stats Section */}
+                <div className="p-4 bg-slate-50 grid grid-cols-2 gap-2">
+                  <div className="bg-white p-3 rounded-2xl border border-slate-100 text-center">
+                    <p className="text-[10px] text-slate-400 font-bold uppercase">
+                      Rentals
+                    </p>
+                    <p className="text-slate-900 font-black text-xl italic">
+                      12
+                    </p>
+                  </div>
+                  <div className="bg-white p-3 rounded-2xl border border-slate-100 text-center">
+                    <p className="text-[10px] text-slate-400 font-bold uppercase">
+                      Points
+                    </p>
+                    <p className="text-amber-500 font-black text-xl italic">
+                      2.4k
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Account Status Info */}
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between px-2">
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <Award size={14} className="text-amber-500" />
+                      <span className="text-[11px] font-bold uppercase">
+                        Member Level
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-black text-slate-900 italic uppercase">
+                      Gold VIP
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between px-2">
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <CalendarCheck size={14} className="text-blue-500" />
+                      <span className="text-[11px] font-bold uppercase">
+                        Joined
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-black text-slate-900 italic uppercase">
+                      {formateDate}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 4. Functional Footer */}
+                <div className="p-4 border-t border-slate-50">
+                  <button
+                    onClick={() => signOutUser()}
+                    className="w-full bg-slate-900 hover:bg-red-700 cursor-pointer hover:text-white text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300"
+                  >
+                    <LogOut size={14} />
+                    Sign Out Now
                   </button>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
         )}
