@@ -2,11 +2,14 @@ import React, { use } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const axios = useAxios();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,6 +29,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         user.photoURL = photoURL;
+        axios
+          .post("http://localhost:3000/users", user)
+          .then(() => {})
+          .catch((err) => {
+            console.log(err);
+          });
         toast.success("Successfully create an account");
         navigate("/");
         form.reset();
@@ -38,7 +47,14 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(() => {
+      .then((result) => {
+        const newUser = result.user;
+        axios
+          .post("http://localhost:3000/users", newUser)
+          .then(() => {})
+          .catch((err) => {
+            console.log(err);
+          });
         toast.success("Google sign in successful");
         navigate(location.state ? location.state : "/");
       })
