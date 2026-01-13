@@ -6,6 +6,7 @@ import LogoMarque from "../../components/marquee/LogoMarque";
 import HowItWorks from "../../components/howItWorks/HowItWorks";
 import WhyChooseUs from "../../components/whyChooseUs/WhyChooseUs";
 import FAQ from "../../components/FAQ/FAQ";
+import Review from "../../components/review/Review";
 
 const Home = () => {
   const axios = useAxios();
@@ -48,6 +49,9 @@ const Home = () => {
       </section>
       <section>
         <FAQ></FAQ>
+      </section>
+      <section>
+        <Review></Review>
       </section>
     </>
   );

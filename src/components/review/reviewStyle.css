@@ -1,0 +1,11 @@
+.swiper {
+  background: transparent;
+  height: fit-content;
+}
+
+.swiper-slide {
+  background: transparent;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
