@@ -5,6 +5,7 @@ import HeroBanner from "../../components/heroBanner/HeroBanner";
 import LogoMarque from "../../components/marquee/LogoMarque";
 import HowItWorks from "../../components/howItWorks/HowItWorks";
 import WhyChooseUs from "../../components/whyChooseUs/WhyChooseUs";
+import FAQ from "../../components/FAQ/FAQ";
 
 const Home = () => {
   const axios = useAxios();
@@ -44,6 +45,9 @@ const Home = () => {
       </section>
       <section>
         <WhyChooseUs></WhyChooseUs>
+      </section>
+      <section>
+        <FAQ></FAQ>
       </section>
     </>
   );
