@@ -111,13 +111,14 @@ const Review = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="!pb-1 bg-transparent"
+          className="!pb-1"
         >
           {testimonials.map((testimonial) => (
-            <SwiperSlide key={testimonial.id}>
+            <SwiperSlide  key={testimonial.id}>
               {/* card */}
-              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] text-left flex flex-col h-full hover:border-amber-500/30 transition-all duration-300">
-                <div className="flex gap-1 mb-6">
+              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] text-left flex flex-col 
+               hover:border-amber-500/30 transition-all duration-300 h-fit">
+                <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -133,10 +134,10 @@ const Review = () => {
                 </div>
 
                 {/* review text  */}
-                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
+                <p className="text-slate-500 text-sm leading-relaxed my-6">
                   "{testimonial.review}"
                 </p>
-                <div className="h-[4px] bg-slate-50 w-full mb-8" />
+                <div className="h-[2px] bg-slate-50 w-full mb-8" />
                 {/* avatar  */}
                 <div className="flex items-center gap-3">
                   <div className="avatar">
