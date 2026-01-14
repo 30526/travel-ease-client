@@ -7,7 +7,7 @@ const MyLink = ({ children, to }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? "text-[#ffaa0b] font-semibold" : ""
+        isActive ? "active-nav text-[#ffaa0b] font-semibold" : ""
       }
     >
       <NavBtn>{children}</NavBtn>

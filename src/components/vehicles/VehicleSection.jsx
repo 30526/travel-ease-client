@@ -28,7 +28,7 @@ const VehicleSection = ({ loading, vehicles }) => {
           <span className="text-amber-500">extensive fleet</span>
         </motion.h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
         {loading
           ? vehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
           : vehicles.map((vehicle) => (

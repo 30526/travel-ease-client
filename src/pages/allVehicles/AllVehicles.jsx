@@ -147,11 +147,11 @@ const AllVehicles = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20 "
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto mb-20 justify-items-center"
       >
         {loading
           ? Array.from({ length: 8 }).map((_, i) => (
-              <motion.div variants={cardVariants} key={`skeleton-${i}`}>
+              <motion.div className="w-full" variants={cardVariants} key={`skeleton-${i}`}>
                 <Skeleton />
               </motion.div>
             ))

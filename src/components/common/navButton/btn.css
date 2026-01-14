@@ -12,7 +12,7 @@
 
 .hover-underline-animation {
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 6px;
 }
 
 .hover-underline-animation:after {
@@ -33,4 +33,6 @@
   transform-origin: bottom right;
 }
 
-
+.active-nav .hover-underline-animation::after {
+  transform: scaleX(2);
+}
