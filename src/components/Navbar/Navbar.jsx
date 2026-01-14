@@ -81,21 +81,11 @@ const Navbar = () => {
     ${scrolled ? "bg-white/70 backdrop-blur-md" : "bg-base-100"}
   `}
     >
-      {/* --- Navbar Start: Mobile Menu + Logo --- */}
+      {/* --- Navbar Start: Mobile*/}
       <div className="navbar-start">
-        {/* <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <Menu className="h-6 w-6" />
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 font-medium"
-          >
-            {navLinks}
-          </ul>
-        </div> */}
         <MenuBar navLinks={navLinks}></MenuBar>
-        <p className="text-2xl font-extrabold text-amber-400 tracking-tight cursor-pointer leading-tight uppercase italic">
+        <img className="h-8" src="/src/assets/tagged.png" alt="Travel Ease Logo" />
+        <p className="text-2xl font-extrabold text-amber-500 tracking-tight cursor-pointer leading-tight uppercase italic hidden md:block">
           Travel<span className="text-black">Ease</span>
         </p>
       </div>

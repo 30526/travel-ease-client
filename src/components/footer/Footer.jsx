@@ -17,12 +17,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* 1. Brand Identity */}
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center">
-                <span className="text-slate-900 font-black italic text-xl">
-                  T
-                </span>
-              </div>
+            <div className="flex items-center">
+              <img className="h-8" src="/src/assets/tagged.png" alt="Brand Logo" />
               <span className="text-white font-black italic uppercase tracking-tighter text-2xl">
                 Travel<span className="text-amber-500">Ease</span>
               </span>
