@@ -30,7 +30,7 @@ const Register = () => {
         const user = result.user;
         user.photoURL = photoURL;
         axios
-          .post("http://localhost:3000/users", user)
+          .post("https://travel-ease-server-navy.vercel.app/users", user)
           .then(() => {})
           .catch((err) => {
             console.log(err);
@@ -50,7 +50,7 @@ const Register = () => {
       .then((result) => {
         const newUser = result.user;
         axios
-          .post("http://localhost:3000/users", newUser)
+          .post("https://travel-ease-server-navy.vercel.app/users", newUser)
           .then(() => {})
           .catch((err) => {
             console.log(err);

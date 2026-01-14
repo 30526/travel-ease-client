@@ -12,7 +12,9 @@ const MyBookings = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/bookings?email=${user.email}`)
+      .get(
+        `https://travel-ease-server-navy.vercel.app/bookings?email=${user.email}`
+      )
       .then((res) => {
         setBookings(res.data);
         setLoading(false);

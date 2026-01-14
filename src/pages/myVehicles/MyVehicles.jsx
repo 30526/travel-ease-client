@@ -14,7 +14,9 @@ const MyVehicles = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/all-vehicles?email=${user?.email}`)
+      .get(
+        `https://travel-ease-server-navy.vercel.app/all-vehicles?email=${user?.email}`
+      )
       .then((res) => {
         setMyVehicles(res.data);
         setTimeout(() => {
@@ -63,10 +65,10 @@ const MyVehicles = () => {
   };
 
   const availableCar = myVehicles.filter(
-    (vehicle) => (vehicle.availability === "Available")
+    (vehicle) => vehicle.availability === "Available"
   );
   const bookedCar = myVehicles.filter(
-    (vehicle) => (vehicle.availability === "Booked")
+    (vehicle) => vehicle.availability === "Booked"
   );
 
   return (
