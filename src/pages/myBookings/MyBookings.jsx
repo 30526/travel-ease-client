@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import Skeleton from "../../components/common/skeleton/Skeleton";
 import BookingCard from "../../components/Booking/bookingCard/BookingCard";
+import EmptyBooking from "./EmptyBookin";
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -23,6 +24,10 @@ const MyBookings = () => {
         console.log("Error fetching bookings:", err.message);
       });
   }, [axios, user.email]);
+
+  if (bookings.length === 0) {
+    return <EmptyBooking></EmptyBooking>;
+  }
 
   return (
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 my-10 min-h-screen">

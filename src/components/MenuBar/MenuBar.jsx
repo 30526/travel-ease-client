@@ -68,11 +68,8 @@ const MenuBar = ({ navLinks }) => {
               {/* Navigation Links Area */}
               <nav className="flex-grow p-6 flex flex-col justify-center">
                 <ul className="space-y-6">
-                  {/* We map through your navLinks here */}
-                  {/* Note: In your real code, you might need to wrap each link in a 
-                      motion.li for staggered entrance animations */}
                   <div className="flex flex-col gap-8 text-3xl font-black italic uppercase tracking-tighter text-slate-900">
-                    {navLinks}
+                    {navLinks} 
                   </div>
                 </ul>
               </nav>

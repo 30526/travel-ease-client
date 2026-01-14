@@ -52,7 +52,7 @@ const LoginPage = () => {
               type="email"
               name="email"
               placeholder="Email Address"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
               required
             />
             <label className=" validator">
@@ -61,7 +61,7 @@ const LoginPage = () => {
                 name="password"
                 placeholder="Password"
                 minLength={6}
-                className="mb-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="mb-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                 required

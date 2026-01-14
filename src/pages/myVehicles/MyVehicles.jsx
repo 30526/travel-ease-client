@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { Car, CheckCircle, BookmarkCheck } from "lucide-react";
 import MyVehiclesCard from "./MyVehiclesCard";
 import Skeleton from "../../components/common/skeleton/Skeleton";
+import EmptyVehicle from "./EmptyVehicle";
 
 const MyVehicles = () => {
   const axios = useAxios();
@@ -143,6 +144,7 @@ const MyVehicles = () => {
           </div>
         </div>
       </div>
+      {myVehicles.length === 0 && <EmptyVehicle></EmptyVehicle>}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx-auto my-10">
         {loading
           ? myVehicles.map((vehicle) => <Skeleton key={vehicle._id}></Skeleton>)
