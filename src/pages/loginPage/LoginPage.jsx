@@ -37,16 +37,69 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6 my-20">
-      <div className=" md:block col-span-4 hidden">{/* <IridBG /> */}</div>
-      <div className=" flex col-span-2 w-full justify-center items-cente">
+    <div className="grid grid-cols-1 md:grid-cols-6 min-h-[80vh]">
+      <div className=" md:block col-span-4 hidden ">
+        <div className="md:flex col-span-4 hidden bg-gradient-to-br from-slate-900 via-slate-900 to-black relative overflow-hidden flex-col justify-center p-20 border-b border-slate-800 min-h-[90vh]">
+          <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute -top-20 -right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute right-0 bottom-10 translate-x-1/4 opacity-[0.02] select-none pointer-events-none">
+            <span className="text-[45rem] font-black text-white italic leading-none">
+              T
+            </span>
+          </div>
+
+          <div className="relative z-10 max-w-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-[2px] w-8 bg-amber-500" />
+              <p className="text-amber-500 font-black uppercase tracking-[0.5em] text-xs">
+                Elite Collection
+              </p>
+            </div>
+
+            <h2 className="text-6xl lg:text-7xl font-black text-white leading-[0.85] uppercase italic tracking-tighter mb-4">
+              The keys to <br />
+              <span className="text-amber-500">Excellence</span>
+            </h2>
+
+            <p className="text-slate-400 text-lg font-medium max-w-md leading-relaxed mb-8">
+              Log in to your private portal to manage your fleet, view active
+              bookings, and explore the newest additions to our exotic gallery.
+            </p>
+            <div className="grid grid-cols-2 gap-y-10 gap-x-12">
+              {[
+                { title: "Priority", desc: "24/7 Concierge" },
+                { title: "Secure", desc: "End-to-End Encryption" },
+                { title: "Swift", desc: "1-Click Reservation" },
+                { title: "Status", desc: "Loyalty Rewards" },
+              ].map((item, i) => (
+                <div key={i} className="group cursor-default">
+                  <h4 className="text-white font-black uppercase italic text-sm tracking-widest group-hover:text-amber-500 transition-colors">
+                    {item.title}
+                  </h4>
+                  <div className="h-[1px] w-4 bg-amber-500/30 my-2 group-hover:w-full transition-all duration-500" />
+                  <p className="text-slate-500 text-[11px] font-bold uppercase tracking-tight">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="absolute bottom-10 left-20 border-l border-amber-500/50 pl-4">
+            <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
+              TravelEase <span className="text-slate-700">|</span> Authorized
+              Access Only
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className=" flex col-span-2 w-full justify-center items-cente pt-12">
         <div className="max-w-md w-full p-8">
           <Link to={"/"}>
-            <h2 className="text-3xl cursor-pointer font-bold text-center">
-              TravelEase
+            <h2 className="text-4xl text-center font-extrabold text-amber-500 tracking-tight cursor-pointer leading-tight uppercase italic hidden md:block">
+              Travel<span className="text-black">Ease</span>
             </h2>
           </Link>
-          <h1 className="text-xl font-semibold my-8 text-center">Login</h1>
+          <h1 className="text-xl font-bold my-6 text-center uppercase">Login</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="email"
