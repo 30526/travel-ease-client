@@ -7,6 +7,7 @@ import HowItWorks from "../../components/howItWorks/HowItWorks";
 import WhyChooseUs from "../../components/whyChooseUs/WhyChooseUs";
 import FAQ from "../../components/FAQ/FAQ";
 import Review from "../../components/review/Review";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const axios = useAxios();
@@ -23,8 +24,8 @@ const Home = () => {
         }, 1000);
       })
       .catch((err) => {
-        console.error("Error fetching vehicles:", err);
-        alert("Error fetching vehicles: " + err.message);
+        console.error("Error fetching vehicles:", err.message);
+        toast.error("Error fetching vehicles: " + err.message);
         setLoading(false);
       });
   }, [axios]);

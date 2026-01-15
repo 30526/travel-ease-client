@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
-  const { createUser, signInWithGoogle } = use(AuthContext);
+  const { createUser, signInWithGoogle, updateUser } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const axios = useAxios();
@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    // const name = form.name.value;
+    const name = form.name.value;
     const email = form.email.value;
     const photoURL = form.PhotoURL.value;
     const password = form.password.value;
@@ -28,7 +28,8 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        user.photoURL = photoURL;
+        updateUser({ displayName: name, photoURL });
+
         axios
           .post("https://travel-ease-server-navy.vercel.app/users", user)
           .then(() => {})
@@ -88,21 +89,21 @@ const Register = () => {
                 type="text"
                 name="name"
                 placeholder="Full Name"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Email Address"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
               <input
                 type="url"
                 name="PhotoURL"
                 placeholder="Photo URL"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
               <label className="validator">
                 <input
@@ -110,7 +111,7 @@ const Register = () => {
                   minLength={6}
                   name="password"
                   placeholder="Password"
-                  className="mb-4 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="mb-4 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                   required
@@ -127,7 +128,7 @@ const Register = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
               <div className="flex gap-3">

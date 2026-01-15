@@ -16,7 +16,7 @@ import MenuBar from "../MenuBar/MenuBar";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = use(AuthContext);
-  console.log("User here", user.email);
+  // console.log("User here", user.email);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {

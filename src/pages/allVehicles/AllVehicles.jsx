@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import useAxios from "../../hooks/useAxios";
 import Skeleton from "../../components/common/skeleton/Skeleton";
 import VehicleCard from "../../components/vehicles/VehicleCard";
+import toast from "react-hot-toast";
 
 const AllVehicles = () => {
   const axios = useAxios();
@@ -19,11 +20,11 @@ const AllVehicles = () => {
         setVehicles(res.data);
         setTimeout(() => {
           setLoading(false);
-        }, 3000);
+        }, 1000);
       })
       .catch((err) => {
-        console.error("Error fetching all vehicles:", err);
-        alert("Error fetching all vehicles: " + err.message);
+        console.error("Error fetching all vehicles:", err.message);
+        toast.error("Error fetching all vehicles: " + err.message);
         setLoading(false);
       });
   }, [axios]);
@@ -89,14 +90,12 @@ const AllVehicles = () => {
             </motion.h1>
           </div>
 
-      
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="bg-white p-4 rounded-[2rem] shadow-sm shadow-amber-200/50 border border-slate-100 flex flex-col lg:flex-row gap-4 items-center"
           >
-         
             <div className="relative w-full lg:w-1/3">
               <input
                 type="text"
@@ -107,7 +106,6 @@ const AllVehicles = () => {
               />
             </div>
 
-          
             <div className="w-full lg:w-2/3 flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0">
               {["All", "Luxury", "Sports", "SUV", "Electric"].map(
                 (category) => (
@@ -126,7 +124,6 @@ const AllVehicles = () => {
                 )
               )}
 
-             
               <div className="ml-auto  lg:block ">
                 <select
                   onClick={(e) => setSort(e.target.value)}
@@ -151,7 +148,11 @@ const AllVehicles = () => {
       >
         {loading
           ? Array.from({ length: 8 }).map((_, i) => (
-              <motion.div className="w-full" variants={cardVariants} key={`skeleton-${i}`}>
+              <motion.div
+                className="w-full"
+                variants={cardVariants}
+                key={`skeleton-${i}`}
+              >
                 <Skeleton />
               </motion.div>
             ))
