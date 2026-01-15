@@ -18,7 +18,11 @@ const Footer = () => {
           {/* 1. Brand Identity */}
           <div className="space-y-6">
             <div className="flex items-center">
-              <img className="h-8" src="/src/assets/tagged.png" alt="Brand Logo" />
+              <img
+                className="h-8"
+                src="https://i.ibb.co.com/TB9mqn4v/tagged.png"
+                alt="Brand Logo"
+              />
               <span className="text-white font-black italic uppercase tracking-tighter text-2xl">
                 Travel<span className="text-amber-500">Ease</span>
               </span>

@@ -7,7 +7,7 @@ import {
   Award,
   Clock,
 } from "lucide-react";
-import { format, formatDate } from "date-fns";
+import { format} from "date-fns";
 import Theme from "../common/theme/Theme";
 import { Link } from "react-router";
 import MyLink from "../common/navlink/MyLink";
@@ -16,6 +16,7 @@ import MenuBar from "../MenuBar/MenuBar";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = use(AuthContext);
+  console.log("User here", user.email);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [checked, setChecked] = useState(() => {
@@ -84,7 +85,11 @@ const Navbar = () => {
       {/* --- Navbar Start: Mobile*/}
       <div className="navbar-start">
         <MenuBar navLinks={navLinks}></MenuBar>
-        <img className="h-8" src="/src/assets/tagged.png" alt="Travel Ease Logo" />
+        <img
+          className="h-8"
+          src="https://i.ibb.co.com/TB9mqn4v/tagged.png"
+          alt="Travel Ease Logo"
+        />
         <p className="text-2xl font-extrabold text-amber-500 tracking-tight cursor-pointer leading-tight uppercase italic hidden md:block">
           Travel<span className="text-black">Ease</span>
         </p>
